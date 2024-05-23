@@ -27,9 +27,6 @@ public class UserController {
           message="Invalid login credentials";
       return new ResponseEntity<>(message,HttpStatus.OK);
     }
-    @GetMapping("/data")
-    public ResponseEntity<String> getInfo(){
-      return new ResponseEntity<>("This is your data",HttpStatus.OK);
-    }
+
 
 }

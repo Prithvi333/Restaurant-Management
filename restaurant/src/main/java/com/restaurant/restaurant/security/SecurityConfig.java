@@ -37,9 +37,22 @@ public class SecurityConfig {
                 })
                 .authorizeHttpRequests(auth->{
 
-            auth.requestMatchers("/user/login").permitAll().requestMatchers("/user/create")
-                    .permitAll().requestMatchers("/menu/*").hasRole("ADMIN").requestMatchers("/item/*").hasRole("ADMIN").requestMatchers("/order/*").hasRole("ADMIN").anyRequest().authenticated();
+            auth.requestMatchers("/user/login").hasRole("ADMIN")
+                    .requestMatchers("/user/*").hasRole("CUSTOMER")
 
+                    .requestMatchers("/menu/*").hasRole("ADMIN")
+                    .requestMatchers("/menu/read").hasRole("CUSTOMER")
+
+                    .requestMatchers("/item/*").hasRole("ADMIN")
+                    .requestMatchers("/item/read").hasRole("CUSTOMER")
+
+                    .requestMatchers("/order/update","/order/read").hasRole("ADMIN")
+                    .requestMatchers("/order/create","/order/delete","/order/read").hasRole("CUSTOMER")
+
+                    .requestMatchers("/orders/read").hasRole("ADMIN")
+                    .requestMatchers("/orders/*").hasRole("CUSTOMER")
+
+                     .anyRequest().authenticated();
         })
                 .addFilterAfter(new JwtGenerator(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OrderItemServiceImp implements OrderItemService{
+public class OrderItemServiceImp implements OrderItemService {
 
     @Autowired
     private OrderRepo orderRepo;
@@ -37,40 +37,40 @@ public class OrderItemServiceImp implements OrderItemService{
 
 
     @Override
-    public OrderItem createOrderItem(int orderId, int menuItemId,OrderItem orderItem) {
+    public OrderItem createOrderItem(int orderId, int menuItemId, OrderItem orderItem) {
 
         Optional<Order> order = orderRepo.findById(orderId);
-          if(order.isEmpty())
-              throw new OrderNotFound();
+        if (order.isEmpty())
+            throw new OrderNotFound();
 
-          Optional<MenuItem> menuItem = menuItemRepo.findById(menuItemId);
-          if(menuItem.isEmpty())
-              throw new MenuItemNotFound();
+        Optional<MenuItem> menuItem = menuItemRepo.findById(menuItemId);
+        if (menuItem.isEmpty())
+            throw new MenuItemNotFound();
 
-          orderItem.setOrder(order.get());
-          orderItem.setMenuItem(menuItem.get());
+        orderItem.setOrder(order.get());
+        orderItem.setMenuItem(menuItem.get());
 
-          orderRepo.save(order.get());
-          menuItemRepo.save(menuItem.get());
+        orderRepo.save(order.get());
+        menuItemRepo.save(menuItem.get());
 
-          return orderItemRepo.findById(orderItem.getOrderItemId()).get();I
+        return orderItemRepo.findById(orderItem.getOrderItemId()).get();
 
     }
 
     @Override
     public List<OrderItem> getAllOrderItem(int userId) {
-        List<Order> orderList =  orderRepo.findAll();
+        List<Order> orderList = orderRepo.findAll();
         List<OrderItem> ansList = new ArrayList<>();
-        if(orderList.isEmpty())
+        if (orderList.isEmpty())
             throw new EmptyOrderList();
-        for(Order order :orderList){
-             if(order.getUser().getUserId() == userId){
-                 List<OrderItem> orderItemList = order.getOrderItems();
-                 ansList.addAll(orderItemList);
-             }
+        for (Order order : orderList) {
+            if (order.getUser().getUserId() == userId) {
+                List<OrderItem> orderItemList = order.getOrderItems();
+                ansList.addAll(orderItemList);
+            }
 
         }
-        if(ansList.isEmpty())
+        if (ansList.isEmpty())
             throw new EmptyOrderItem();
         return ansList;
 
