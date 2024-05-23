@@ -9,6 +9,7 @@ import com.restaurant.restaurant.exception.order_itemex.EmptyOrderItem;
 import com.restaurant.restaurant.exception.order_itemex.OrderItemNotFound;
 import com.restaurant.restaurant.exception.orderex.EmptyOrderList;
 import com.restaurant.restaurant.exception.orderex.OrderNotFound;
+import com.restaurant.restaurant.exception.userex.EmptyUserList;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,10 @@ public class GlobalExceptionHandler {
          errorDataTransfer.setErrorMessage(userNotFound.getMessage());
          errorDataTransfer.setLocalDateTime(LocalDateTime.now());
        return new ResponseEntity<>(errorDataTransfer, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(EmptyUserList.class)
+    public ResponseEntity<ErrorDataTransfer> emptyUserList(EmptyUserList emptyUserList){
+        return new ResponseEntity<>(new ErrorDataTransfer(emptyUserList.getMessage(),LocalDateTime.now()),HttpStatus.OK);
     }
 
     @ExceptionHandler(OrderItemNotFound.class)

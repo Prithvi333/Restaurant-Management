@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "Customer_Order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,7 @@ public class Order {
     @JsonIgnore
     User user;
 
+    @Temporal(TemporalType.TIME)
     LocalTime localTime;
     boolean status;
 
@@ -25,6 +27,13 @@ public class Order {
 
     public Order(){
         super();
+    }
+
+    public Order(List<OrderItem> orderItems, boolean status, LocalTime localTime, User user) {
+        this.orderItems = orderItems;
+        this.status = status;
+        this.localTime = localTime;
+        this.user = user;
     }
 
     public List<OrderItem> getOrderItems() {
