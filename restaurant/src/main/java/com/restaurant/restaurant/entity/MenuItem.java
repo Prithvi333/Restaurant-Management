@@ -3,6 +3,8 @@ package com.restaurant.restaurant.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,9 +20,13 @@ public class MenuItem {
     @ManyToOne
     @JsonIgnore
      Menu menu;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "menuItem",orphanRemoval = true)
+    List<OrderItem> orderItems =  new ArrayList<>();
+
     public MenuItem(){
         super();
     }
+
     public MenuItem(String name, String description, int price, String category,Menu menu) {
         this.name = name;
         this.description = description;

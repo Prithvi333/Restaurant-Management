@@ -1,9 +1,12 @@
 package com.restaurant.restaurant.exception;
 
+import com.restaurant.restaurant.entity.Order;
 import com.restaurant.restaurant.exception.itemex.EmptyMenuItem;
 import com.restaurant.restaurant.exception.itemex.MenuItemNotFound;
 import com.restaurant.restaurant.exception.menuex.EmptyMenu;
 import com.restaurant.restaurant.exception.menuex.MenuNotFound;
+import com.restaurant.restaurant.exception.orderex.EmptyOrderList;
+import com.restaurant.restaurant.exception.orderex.OrderNotFound;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +28,22 @@ public class GlobalExceptionHandler {
          errorDataTransfer.setLocalDateTime(LocalDateTime.now());
        return new ResponseEntity<>(errorDataTransfer, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(OrderNotFound.class)
+    public ResponseEntity<ErrorDataTransfer> orderNotFound(OrderNotFound orderNotFound){
+        ErrorDataTransfer errorDataTransfer =  new ErrorDataTransfer();
+        errorDataTransfer.setLocalDateTime(LocalDateTime.now());
+        errorDataTransfer.setErrorMessage(orderNotFound.getMessage());
+        return new ResponseEntity<>(errorDataTransfer,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EmptyOrderList.class)
+    public ResponseEntity<ErrorDataTransfer> emptyOrderListFound(EmptyOrderList emptyOrderList){
+
+        return new ResponseEntity<>(new ErrorDataTransfer(emptyOrderList.getMessage(),LocalDateTime.now()),HttpStatus.BAD_REQUEST);
+
+    }
+
     @ExceptionHandler(MenuItemNotFound.class)
     public ResponseEntity<ErrorDataTransfer> MenuItemNotFound(MenuItemNotFound menuItemNotFound){
          ErrorDataTransfer errorDataTransfer =new ErrorDataTransfer();
