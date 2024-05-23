@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth->{
 
             auth.requestMatchers("/user/login").permitAll().requestMatchers("/user/create")
-                    .permitAll().requestMatchers("/menu/*").hasRole("ADMIN").anyRequest().authenticated();
+                    .permitAll().requestMatchers("/menu/*").hasRole("ADMIN").requestMatchers("/item/*").hasRole("ADMIN").anyRequest().authenticated();
 
         })
                 .addFilterAfter(new JwtGenerator(), BasicAuthenticationFilter.class)

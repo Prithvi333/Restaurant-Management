@@ -1,8 +1,10 @@
 package com.restaurant.restaurant.repository;
-
-import com.restaurant.restaurant.entity.Menu;
-import com.restaurant.restaurant.service.item.MenuItem;
+import com.restaurant.restaurant.entity.MenuItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MenuItemRepo extends JpaRepository<Menu,Integer> {
+import java.util.Optional;
+
+public interface MenuItemRepo extends JpaRepository<MenuItem,Integer> {
+    Optional<MenuItem> findByName(String name);
+
 }
