@@ -19,7 +19,7 @@ public class MenuItem {
 
     @ManyToOne
     @JsonIgnore
-     Menu menu;
+      Menu menu;
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "menuItem",orphanRemoval = true)
     List<OrderItem> orderItems =  new ArrayList<>();
 

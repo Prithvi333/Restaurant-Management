@@ -2,6 +2,7 @@ package com.restaurant.restaurant.service.order_item;
 
 import com.restaurant.restaurant.entity.OrderItem;
 import com.restaurant.restaurant.repository.OrderItemRepo;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -11,5 +12,8 @@ public interface OrderItemService {
 
     public List<OrderItem> getAllOrderItem(int userId);
 
+    public String deleteOrderItem(int userId,int orderId);
+
+    public OrderItem updateOrderItem(int userId, int orderId, @RequestBody OrderItemDto orderItemDto);
 
 }

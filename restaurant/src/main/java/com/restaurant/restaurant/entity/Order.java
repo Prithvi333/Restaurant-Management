@@ -27,6 +27,9 @@ public class Order {
         super();
     }
 
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 
     public int getOrderId() {
         return orderId;

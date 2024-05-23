@@ -5,6 +5,8 @@ import com.restaurant.restaurant.exception.itemex.EmptyMenuItem;
 import com.restaurant.restaurant.exception.itemex.MenuItemNotFound;
 import com.restaurant.restaurant.exception.menuex.EmptyMenu;
 import com.restaurant.restaurant.exception.menuex.MenuNotFound;
+import com.restaurant.restaurant.exception.order_itemex.EmptyOrderItem;
+import com.restaurant.restaurant.exception.order_itemex.OrderItemNotFound;
 import com.restaurant.restaurant.exception.orderex.EmptyOrderList;
 import com.restaurant.restaurant.exception.orderex.OrderNotFound;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
@@ -27,6 +29,17 @@ public class GlobalExceptionHandler {
          errorDataTransfer.setErrorMessage(userNotFound.getMessage());
          errorDataTransfer.setLocalDateTime(LocalDateTime.now());
        return new ResponseEntity<>(errorDataTransfer, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(OrderItemNotFound.class)
+    public ResponseEntity<ErrorDataTransfer> orderItemNotFound(OrderItemNotFound orderItemNotFound){
+        ErrorDataTransfer errorDataTransfer =new ErrorDataTransfer(orderItemNotFound.getMessage(),LocalDateTime.now());
+        return new ResponseEntity<>(errorDataTransfer,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EmptyOrderItem.class)
+    public ResponseEntity<ErrorDataTransfer> emptyErrorItem(EmptyOrderItem emptyOrderItem){
+        return new ResponseEntity<>(new ErrorDataTransfer(emptyOrderItem.getMessage(),LocalDateTime.now()),HttpStatus.OK);
     }
 
     @ExceptionHandler(OrderNotFound.class)

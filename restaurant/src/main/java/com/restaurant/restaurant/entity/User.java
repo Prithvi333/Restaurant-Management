@@ -11,7 +11,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int adminId;
+    int userId;
     String firstName;
     String lastName;
     @Column(unique = true)
@@ -74,12 +74,12 @@ public class User {
         this.role = role;
     }
 
-    public int getAdminId() {
-        return adminId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAdminId(int adminId) {
-        this.adminId = adminId;
+    public void setUserId(int adminId) {
+        this.userId = adminId;
     }
 
     public List<Order> getOrderList() {
@@ -89,4 +89,5 @@ public class User {
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
     }
+
 }
