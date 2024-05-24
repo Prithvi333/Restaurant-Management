@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -17,6 +18,13 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
+  @GetMapping("/")
+  public String verify(Principal principal){
+    return principal.getName()+"logged into the system using oauth2";
+  }
+
   @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody User user){
         return new ResponseEntity<>(userService.createUser(user),HttpStatus.CREATED);

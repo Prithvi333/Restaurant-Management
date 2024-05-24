@@ -1,15 +1,18 @@
 package com.restaurant.restaurant.security;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -56,7 +59,8 @@ public class SecurityConfig {
         })
                 .addFilterAfter(new JwtGenerator(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
-                .csrf(csrf->csrf.disable()).formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
+                .csrf(csrf->csrf.disable())
+                .formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
                  return http.build();
     }
 
