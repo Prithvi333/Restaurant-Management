@@ -1,6 +1,8 @@
 package com.restaurant.restaurant.exception;
 
 import com.restaurant.restaurant.entity.Order;
+import com.restaurant.restaurant.exception.adminex.AdminNotFound;
+import com.restaurant.restaurant.exception.adminex.EmptyAdminList;
 import com.restaurant.restaurant.exception.itemex.EmptyMenuItem;
 import com.restaurant.restaurant.exception.itemex.MenuItemNotFound;
 import com.restaurant.restaurant.exception.menuex.EmptyMenu;
@@ -31,6 +33,20 @@ public class GlobalExceptionHandler {
          errorDataTransfer.setLocalDateTime(LocalDateTime.now());
        return new ResponseEntity<>(errorDataTransfer, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(EmptyAdminList.class)
+    public ResponseEntity<ErrorDataTransfer> EmptyAdminListFound(EmptyAdminList emptyAdminList){
+        ErrorDataTransfer errorDataTransfer = new ErrorDataTransfer();
+        errorDataTransfer.setErrorMessage(emptyAdminList.getMessage());
+        errorDataTransfer.setLocalDateTime(LocalDateTime.now());
+        return new ResponseEntity<>(errorDataTransfer,HttpStatus.OK);
+    }
+
+    @ExceptionHandler(AdminNotFound.class)
+    public  ResponseEntity<ErrorDataTransfer> adminNotFound(AdminNotFound adminNotFound){
+        return new ResponseEntity<>(new ErrorDataTransfer(adminNotFound.getMessage(),LocalDateTime.now()),HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(EmptyUserList.class)
     public ResponseEntity<ErrorDataTransfer> emptyUserList(EmptyUserList emptyUserList){
         return new ResponseEntity<>(new ErrorDataTransfer(emptyUserList.getMessage(),LocalDateTime.now()),HttpStatus.OK);

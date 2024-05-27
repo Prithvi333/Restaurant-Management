@@ -10,5 +10,4 @@ public interface UserService {
     public User updateUser(int userId,UserDto userDto);
     public String deleteUser(int userId);
     public List<User> getAllUser();
-   public User createAdmin(@RequestBody User user);
 }

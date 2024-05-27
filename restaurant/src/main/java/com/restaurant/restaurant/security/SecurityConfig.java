@@ -1,18 +1,15 @@
 package com.restaurant.restaurant.security;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -40,8 +37,11 @@ public class SecurityConfig {
                 })
                 .authorizeHttpRequests(auth->{
 
-            auth.requestMatchers("/user/*").hasRole("ADMIN")
-                    .requestMatchers("/user/create","/user/login").hasRole("CUSTOMER")
+            auth
+                    .requestMatchers("/signIn","/email/*").permitAll()
+                    .requestMatchers("/admin/*").hasRole("ADMIN")
+                    .requestMatchers("/user/delete/*","/user/update/*","/user/read").hasRole("ADMIN")
+                    .requestMatchers("/user/create").permitAll()
 
                     .requestMatchers("/menu/*").hasRole("ADMIN")
                     .requestMatchers("/menu/read").hasRole("CUSTOMER")
@@ -49,8 +49,8 @@ public class SecurityConfig {
                     .requestMatchers("/item/*").hasRole("ADMIN")
                     .requestMatchers("/item/read").hasRole("CUSTOMER")
 
-                    .requestMatchers("/order/update","/order/read").hasRole("ADMIN")
-                    .requestMatchers("/order/create","/order/delete","/order/read").hasRole("CUSTOMER")
+                    .requestMatchers("/order/update/*","/order/read").hasRole("ADMIN")
+                    .requestMatchers("/order/create","/order/delete/*","/order/read").hasRole("CUSTOMER")
 
                     .requestMatchers("/orders/read").hasRole("ADMIN")
                     .requestMatchers("/orders/*").hasRole("CUSTOMER")

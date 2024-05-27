@@ -63,10 +63,5 @@ public class UserServiceImp implements  UserService{
       return userList;
     }
 
-    @Override
-    public User createAdmin(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_ADMIN");
-        return userRepo.save(user);
-    }
+
 }
