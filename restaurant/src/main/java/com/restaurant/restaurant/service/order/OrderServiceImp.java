@@ -7,7 +7,6 @@ import com.restaurant.restaurant.exception.orderex.OrderNotFound;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import com.restaurant.restaurant.repository.OrderRepo;
 import com.restaurant.restaurant.repository.UserRepo;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,19 +24,18 @@ public class OrderServiceImp implements  OrderService {
     private OrderRepo orderRepo;
 
     @Override
-    public Order createOrder(int userId) {
+    public String createOrder(int userId) {
 
         Optional<User> user = userRepo.findById(userId);
         if(user.isEmpty())
          throw new UserNotFound(STR."Customer not found with id \{userId}");
         Order order =  new Order();
         order.setUser(user.get());
-        order.setLocalTime(order.getLocalTime());
+        order.setLocalTime(LocalTime.now());
         order.setStatus(true);
-
         user.get().getOrderList().add(order);
         userRepo.save(user.get());
-        return orderRepo.findById(order.getOrderId()).get();
+        return STR."Order created successfully by userId \{userId}";
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.restaurant.restaurant.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.security.AlgorithmConstraints;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,20 +20,21 @@ public class MenuItem {
 
     @ManyToOne
     @JsonIgnore
-      Menu menu;
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "menuItem",orphanRemoval = true)
+    Menu menu;
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "menuItem", orphanRemoval = true)
     List<OrderItem> orderItems =  new ArrayList<>();
 
     public MenuItem(){
         super();
     }
 
-    public MenuItem(String name, String description, int price, String category,Menu menu) {
+    public MenuItem(String name, String description, int price, String category,Menu menu,List<OrderItem> orderItems) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.category = category;
         this.menu = menu;
+        this.orderItems = orderItems;
     }
 
     public String getCategory() {
@@ -77,6 +79,15 @@ public class MenuItem {
 
     public void setMenu(Menu menu) {
         this.menu = menu;
+    }
+
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     @Override

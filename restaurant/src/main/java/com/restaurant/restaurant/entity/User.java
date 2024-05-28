@@ -22,16 +22,19 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "user",orphanRemoval = true)
     List<Order> orderList  = new ArrayList<>();
 
+
+
     public User(){
         super();
     }
 
-    public User(String firstName, String lastName, String email, String password, String role) {
+    public User(String firstName, String lastName, String email, String password, String role ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.role = role;
+
     }
 
     public String getFirstName() {
@@ -89,5 +92,6 @@ public class User {
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
     }
+
 
 }

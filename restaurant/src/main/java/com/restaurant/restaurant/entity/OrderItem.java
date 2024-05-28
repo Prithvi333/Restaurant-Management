@@ -14,10 +14,10 @@ public class OrderItem {
     boolean specialRequest;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Order order;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     MenuItem menuItem;
 
     public OrderItem(){

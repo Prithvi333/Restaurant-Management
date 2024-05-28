@@ -1,9 +1,6 @@
 package com.restaurant.restaurant.service.order_item;
 
-import com.restaurant.restaurant.entity.MenuItem;
-import com.restaurant.restaurant.entity.Order;
-import com.restaurant.restaurant.entity.OrderItem;
-import com.restaurant.restaurant.entity.User;
+import com.restaurant.restaurant.entity.*;
 import com.restaurant.restaurant.exception.itemex.MenuItemNotFound;
 import com.restaurant.restaurant.exception.order_itemex.EmptyOrderItem;
 import com.restaurant.restaurant.exception.order_itemex.OrderItemNotFound;
@@ -49,11 +46,7 @@ public class OrderItemServiceImp implements OrderItemService {
 
         orderItem.setOrder(order.get());
         orderItem.setMenuItem(menuItem.get());
-
-        orderRepo.save(order.get());
-        menuItemRepo.save(menuItem.get());
-
-        return orderItemRepo.findById(orderItem.getOrderItemId()).get();
+        return orderItemRepo.save(orderItem);
 
     }
 

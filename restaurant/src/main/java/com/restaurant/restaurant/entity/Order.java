@@ -22,7 +22,7 @@ public class Order {
     LocalTime localTime;
     boolean status;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy ="order" , orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy ="order" , orphanRemoval = true)
     List<OrderItem> orderItems = new ArrayList<>();
 
     public Order(){

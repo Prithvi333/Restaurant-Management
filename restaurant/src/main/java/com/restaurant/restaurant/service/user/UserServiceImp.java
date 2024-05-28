@@ -27,7 +27,7 @@ public class UserServiceImp implements  UserService{
     public String createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_CUSTOMER");
-        userRepo.save(user);
+
         return STR."User is create successfully with name \{user.getFirstName()} \{user.getLastName()}";
     }
 
