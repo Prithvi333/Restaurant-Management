@@ -25,8 +25,8 @@ This project is a basic Restaurant Management System (RMS) designed to handle th
 ## Usage
 
 ### Restaurant Management
-* Add a New restaurant: Fill out the form in the restaurant section to add a new customer.
-* Update restaurant Information:  Click to update restaurant information including its location seating capacity.
+* Add a New restaurant: Fill out the form in the restaurant section to add a new restaurant.
+* Update restaurant Information:  Click to update restaurant information including its location and seating capacity.
 * Delete a restaurant: Click the delete button to delete restaurant.
 
 ### Menu Management
