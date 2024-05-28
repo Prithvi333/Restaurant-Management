@@ -23,6 +23,12 @@ This project is a basic Restaurant Management System (RMS) designed to handle th
 * Mysql installed and running
 
 ## Usage
+
+### Restaurant Management
+* Add a New restaurant: Fill out the form in the restaurant section to add a new customer.
+* Update restaurant Information:  Click to update restaurant information including its location seating capacity.
+* Delete a restaurant: Click the delete button to delete restaurant.
+
 ### Menu Management
 * Add a New Menu Item: Navigate to the Menu section and fill out the form to add a new item.
 * Edit a Menu Item: Click the edit button next to the item you want to update.
