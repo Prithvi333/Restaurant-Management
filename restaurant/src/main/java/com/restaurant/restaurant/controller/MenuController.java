@@ -17,9 +17,9 @@ public class MenuController {
 
     @Autowired
     private MenuService menuService;
-     @PostMapping("/create")
-    public ResponseEntity<Menu> createMenu(@RequestBody Menu menu){
-       Menu savedMenu =  menuService.createMenu(menu);
+     @PostMapping("/create/{restaurantId}")
+    public ResponseEntity<Menu> createMenu(@PathVariable("restaurantId") int id, @RequestBody Menu menu){
+       Menu savedMenu =  menuService.createMenu(id,menu);
         return new ResponseEntity<>(savedMenu, HttpStatus.CREATED);
     }
     @GetMapping("/read")

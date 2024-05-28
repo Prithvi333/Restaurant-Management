@@ -11,6 +11,8 @@ import com.restaurant.restaurant.exception.order_itemex.EmptyOrderItem;
 import com.restaurant.restaurant.exception.order_itemex.OrderItemNotFound;
 import com.restaurant.restaurant.exception.orderex.EmptyOrderList;
 import com.restaurant.restaurant.exception.orderex.OrderNotFound;
+import com.restaurant.restaurant.exception.restaurantex.EmptyRestaurantList;
+import com.restaurant.restaurant.exception.restaurantex.RestaurantNotFound;
 import com.restaurant.restaurant.exception.userex.EmptyUserList;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import org.springframework.http.HttpStatus;
@@ -33,7 +35,14 @@ public class GlobalExceptionHandler {
          errorDataTransfer.setLocalDateTime(LocalDateTime.now());
        return new ResponseEntity<>(errorDataTransfer, HttpStatus.NOT_FOUND);
     }
-
+    @ExceptionHandler(EmptyRestaurantList.class)
+    public ResponseEntity<ErrorDataTransfer> emptyRestaurantList(EmptyRestaurantList emptyRestaurantList){
+        return new ResponseEntity<>(new ErrorDataTransfer(emptyRestaurantList.getMessage(),LocalDateTime.now()),HttpStatus.OK);
+    }
+  @ExceptionHandler(RestaurantNotFound.class)
+  public  ResponseEntity<ErrorDataTransfer> restaurantNotFound(RestaurantNotFound restaurantNotFound){
+        return new ResponseEntity<>(new ErrorDataTransfer(restaurantNotFound.getMessage(),LocalDateTime.now()),HttpStatus.NOT_FOUND);
+  }
     @ExceptionHandler(EmptyAdminList.class)
     public ResponseEntity<ErrorDataTransfer> EmptyAdminListFound(EmptyAdminList emptyAdminList){
         ErrorDataTransfer errorDataTransfer = new ErrorDataTransfer();

@@ -24,11 +24,11 @@ public class UserServiceImp implements  UserService{
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public String createUser(User user) {
+    public User createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole("ROLE_CUSTOMER");
 
-        return STR."User is create successfully with name \{user.getFirstName()} \{user.getLastName()}";
+       return userRepo.save(user);
     }
 
     @PatchMapping("/update")

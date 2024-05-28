@@ -37,9 +37,9 @@ public class SecurityConfig {
                 })
                 .authorizeHttpRequests(auth->{
 
-            auth
+            auth    .requestMatchers("/restaurant/*").hasRole("ADMIN")
                     .requestMatchers("/signIn","/email/*").permitAll()
-                    .requestMatchers("/admin/*").hasRole("ADMIN")
+                    .requestMatchers("/admin/*").permitAll()
                     .requestMatchers("/user/delete/*","/user/update/*","/user/read").hasRole("ADMIN")
                     .requestMatchers("/user/create").permitAll()
 

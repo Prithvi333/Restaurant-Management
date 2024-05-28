@@ -26,7 +26,7 @@ public class AdminServiceImp implements AdminService{
     @Override
     public Admin createAdmin(Admin admin) {
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-        admin.setRole(admin.getRole());
+        admin.setRole(STR."ROLE_\{admin.getRole().toUpperCase()}");
         return adminRepo.save(admin);
     }
 

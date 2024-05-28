@@ -24,7 +24,7 @@ public class OrderServiceImp implements  OrderService {
     private OrderRepo orderRepo;
 
     @Override
-    public String createOrder(int userId) {
+    public Order createOrder(int userId) {
 
         Optional<User> user = userRepo.findById(userId);
         if(user.isEmpty())
@@ -35,7 +35,7 @@ public class OrderServiceImp implements  OrderService {
         order.setStatus(true);
         user.get().getOrderList().add(order);
         userRepo.save(user.get());
-        return STR."Order created successfully by userId \{userId}";
+        return order;
     }
 
     @Override

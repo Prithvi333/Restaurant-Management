@@ -39,7 +39,7 @@ public class Admin {
     }
 
     public void setRole(String role) {
-        this.role = STR."ROLE_\{role.toUpperCase()}";
+        this.role = role;
     }
 
     public String getEmail() {

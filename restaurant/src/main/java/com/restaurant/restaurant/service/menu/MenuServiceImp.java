@@ -1,9 +1,12 @@
 package com.restaurant.restaurant.service.menu;
 
 import com.restaurant.restaurant.entity.Menu;
+import com.restaurant.restaurant.entity.Restaurant;
 import com.restaurant.restaurant.exception.menuex.EmptyMenu;
 import com.restaurant.restaurant.exception.menuex.MenuNotFound;
+import com.restaurant.restaurant.exception.restaurantex.RestaurantNotFound;
 import com.restaurant.restaurant.repository.MenuRepo;
+import com.restaurant.restaurant.repository.RestaurantRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +16,22 @@ import java.util.Optional;
 public class MenuServiceImp implements MenuService {
 
     @Autowired
+    RestaurantRepo restaurantRepo;
+
+    @Autowired
     private MenuRepo menuRepo;
 
     @Override
-    public Menu createMenu(Menu menu) {
-        Menu addedMenu  = menuRepo.save(menu);
-         return menu;
+    public Menu createMenu(int restaurantId,Menu menu) {
+        Optional<Restaurant> restaurant  = restaurantRepo.findById(restaurantId);
+        if(restaurant.isEmpty())
+            throw new RestaurantNotFound();
+
+         Restaurant validRestaurant = restaurant.get();
+         validRestaurant.setMenu(menu);
+         menu.setRestaurant(restaurant.get());
+         restaurantRepo.save(validRestaurant);
+         return restaurantRepo.findById(restaurantId).get().getMenu();
     }
 
     @Override
