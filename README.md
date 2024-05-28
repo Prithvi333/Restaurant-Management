@@ -40,3 +40,12 @@ This project is a basic Restaurant Management System (RMS) designed to handle th
 
 ### Contact
 For questions or suggestions, feel free to open an issue or contact us at [pthakur.pt36@gmail.com].
+
+## DataBase
+
+<img
+  align="center"
+        width="80%"
+        src="schema.png"
+        alt="error"
+      />
