@@ -95,8 +95,8 @@ public class MenuItemServiceImp implements  MenuItemService{
                         childIsPresent=true;
                         MenuItem menuItem =  menuItems.get(l);
                         childId = menuItem.getMenuItemId();
-                        menuItem.setPrice(menuItemDto.price);
-                        menuItem.setCategory(menuItemDto.category);
+                        menuItem.setPrice(menuItemDto.getPrice());
+                        menuItem.setCategory(menuItemDto.getCategory());
                         menuRepo.save(menuList.get(k));
                         break;
                     }

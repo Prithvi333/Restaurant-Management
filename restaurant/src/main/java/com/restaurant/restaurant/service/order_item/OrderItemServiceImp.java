@@ -135,7 +135,7 @@ public class OrderItemServiceImp implements OrderItemService {
                     if(orderItem.getOrderItemId() == orderId){
                         isOrderItemPresent =true;
                         orderItem.setQuantity(orderItemDto.getQuantity());
-                        orderItem.setSpecialRequest(orderItemDto.specialRequest);
+                        orderItem.setSpecialRequest(orderItemDto.isSpecialRequest());
                         orderRepo.save(order);
                         break;
                     }
