@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.service.order_item;
+package com.restaurant.restaurant.utility;
 
 public class OrderItemDto {
     int quantity;

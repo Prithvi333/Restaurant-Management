@@ -17,7 +17,13 @@ public class GlobalController {
     @PostMapping("/signIn")
     public String login(Authentication authentication){
         if(authentication.isAuthenticated())
-            return STR."Login successfully with email \{authentication.getName()}";
+            return "Login successfully with email "+authentication.getName();
         return "Authentication failed";
     }
+
+    @GetMapping("/head")
+    public  ResponseEntity<String> readHead(@RequestHeader(value = "name") String name){
+         return new ResponseEntity<>("My name is "+name,HttpStatus.OK);
+    }
+
 }

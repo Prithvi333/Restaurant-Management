@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.service.user;
+package com.restaurant.restaurant.utility;
 
 public class UserDto {
     String firstName;

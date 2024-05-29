@@ -90,8 +90,5 @@ public class MenuItem {
         this.orderItems = orderItems;
     }
 
-    @Override
-    public String toString() {
-        return STR."MenuItem{menuItemId=\{menuItemId}, name='\{name}\{'\''}, description='\{description}\{'\''}, price=\{price}, category='\{category}\{'\''}, menu=\{menu}\{'}'}";
-    }
+
 }

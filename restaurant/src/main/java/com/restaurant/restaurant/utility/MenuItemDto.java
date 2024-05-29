@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.service.item;
+package com.restaurant.restaurant.utility;
 
 public class MenuItemDto {
     int price;

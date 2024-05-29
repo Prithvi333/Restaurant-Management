@@ -7,6 +7,7 @@ import com.restaurant.restaurant.exception.menuex.MenuNotFound;
 import com.restaurant.restaurant.exception.restaurantex.RestaurantNotFound;
 import com.restaurant.restaurant.repository.MenuRepo;
 import com.restaurant.restaurant.repository.RestaurantRepo;
+import com.restaurant.restaurant.utility.MenuDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,7 @@ public class MenuServiceImp implements MenuService {
     }
 
     @Override
-    public Menu updateMenu(int menuId,MenuDto menuDto) {
+    public Menu updateMenu(int menuId, MenuDto menuDto) {
         Menu menu=  Optional.of(menuRepo.findById(menuId)).get().orElseThrow(MenuNotFound::new);
           menu.setName(menuDto.getName());
           menu.setDescription(menuDto.getDescription());

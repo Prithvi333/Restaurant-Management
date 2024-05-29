@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.service.admin;
+package com.restaurant.restaurant.utility;
 
 public class AdminDto {
     String name;

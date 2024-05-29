@@ -1,6 +1,4 @@
-package com.restaurant.restaurant.service.order;
-
-import java.time.LocalTime;
+package com.restaurant.restaurant.utility;
 
 public class OrderDto {
 

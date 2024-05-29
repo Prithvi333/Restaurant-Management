@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.service.menu;
+package com.restaurant.restaurant.utility;
 
 public class MenuDto {
     String name;

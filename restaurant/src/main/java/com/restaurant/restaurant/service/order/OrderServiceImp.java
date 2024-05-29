@@ -7,6 +7,7 @@ import com.restaurant.restaurant.exception.orderex.OrderNotFound;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import com.restaurant.restaurant.repository.OrderRepo;
 import com.restaurant.restaurant.repository.UserRepo;
+import com.restaurant.restaurant.utility.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class OrderServiceImp implements  OrderService {
 
         Optional<User> user = userRepo.findById(userId);
         if(user.isEmpty())
-         throw new UserNotFound(STR."Customer not found with id \{userId}");
+         throw new UserNotFound("Customer not found with id "+userId);
         Order order =  new Order();
         order.setUser(user.get());
         order.setLocalTime(LocalTime.now());
@@ -61,7 +62,7 @@ public class OrderServiceImp implements  OrderService {
         List<Order> ordersList= user.get().getOrderList().stream().filter(order->order.getOrderId()!=orderId).collect(Collectors.toList());
         user.get().setOrderList(ordersList);
         userRepo.save(user.get());
-        return STR."Order with id \{orderId} deleted successfully";
+        return "Order with id "+orderId+" deleted successfully";
     }
 
     @Override

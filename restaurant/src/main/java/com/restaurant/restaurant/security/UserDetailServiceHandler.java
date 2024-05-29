@@ -32,7 +32,7 @@ public class UserDetailServiceHandler implements UserDetailsService {
         if(user.isEmpty()){
             Optional<Admin> admin = adminRepo.findByEmail(username);
             if(admin.isEmpty()){
-                throw  new UserNotFound(STR."User not found with email \{username}");
+                throw  new UserNotFound("User not found with email "+username);
             }
             return new org.springframework.security.core.userdetails.User(admin.get().getEmail(),admin.get().getPassword(), List.of(new SimpleGrantedAuthority(admin.get().getRole())));
         }

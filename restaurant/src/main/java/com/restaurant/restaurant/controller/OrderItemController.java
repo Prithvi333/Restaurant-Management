@@ -1,7 +1,7 @@
 package com.restaurant.restaurant.controller;
 
 import com.restaurant.restaurant.entity.OrderItem;
-import com.restaurant.restaurant.service.order_item.OrderItemDto;
+import com.restaurant.restaurant.utility.OrderItemDto;
 import com.restaurant.restaurant.service.order_item.OrderItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

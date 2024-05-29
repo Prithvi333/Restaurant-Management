@@ -1,6 +1,6 @@
 package com.restaurant.restaurant.controller;
 import com.restaurant.restaurant.entity.Admin;
-import com.restaurant.restaurant.service.admin.AdminDto;
+import com.restaurant.restaurant.utility.AdminDto;
 import com.restaurant.restaurant.service.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

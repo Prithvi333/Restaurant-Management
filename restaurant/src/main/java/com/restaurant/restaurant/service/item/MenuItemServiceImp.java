@@ -7,13 +7,11 @@ import com.restaurant.restaurant.exception.itemex.MenuItemNotFound;
 import com.restaurant.restaurant.exception.menuex.MenuNotFound;
 import com.restaurant.restaurant.repository.MenuItemRepo;
 import com.restaurant.restaurant.repository.MenuRepo;
+import com.restaurant.restaurant.utility.MenuItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 @Service
 public class MenuItemServiceImp implements  MenuItemService{

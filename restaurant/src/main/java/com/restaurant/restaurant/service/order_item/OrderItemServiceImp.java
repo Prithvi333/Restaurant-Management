@@ -11,6 +11,7 @@ import com.restaurant.restaurant.repository.MenuItemRepo;
 import com.restaurant.restaurant.repository.OrderItemRepo;
 import com.restaurant.restaurant.repository.OrderRepo;
 import com.restaurant.restaurant.repository.UserRepo;
+import com.restaurant.restaurant.utility.OrderItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,7 +106,7 @@ public class OrderItemServiceImp implements OrderItemService {
         }
         if(!isOrderItemPresent)
             throw new OrderItemNotFound();
-        return STR."OrderItem with id \{orderId} deleted successfully";
+        return "OrderItem with id "+orderId+" deleted successfully";
     }
 
     @Override

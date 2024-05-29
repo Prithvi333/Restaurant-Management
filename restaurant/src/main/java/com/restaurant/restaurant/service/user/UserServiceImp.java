@@ -4,6 +4,7 @@ import com.restaurant.restaurant.entity.User;
 import com.restaurant.restaurant.exception.userex.EmptyUserList;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import com.restaurant.restaurant.repository.UserRepo;
+import com.restaurant.restaurant.utility.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import java.util.List;
 import java.util.Optional;
 
-import static java.lang.StringTemplate.STR;
 @Service
 public class UserServiceImp implements  UserService{
 

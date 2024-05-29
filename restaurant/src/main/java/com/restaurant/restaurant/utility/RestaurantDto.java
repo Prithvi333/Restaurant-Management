@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.service.restaurant;
+package com.restaurant.restaurant.utility;
 
 public class RestaurantDto {
     int seatingCapacity;

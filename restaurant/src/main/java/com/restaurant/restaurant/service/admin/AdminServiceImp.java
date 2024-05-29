@@ -4,12 +4,10 @@ import com.restaurant.restaurant.entity.Admin;
 import com.restaurant.restaurant.exception.adminex.AdminNotFound;
 import com.restaurant.restaurant.exception.adminex.EmptyAdminList;
 import com.restaurant.restaurant.repository.AdminRepo;
+import com.restaurant.restaurant.utility.AdminDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +24,7 @@ public class AdminServiceImp implements AdminService{
     @Override
     public Admin createAdmin(Admin admin) {
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-        admin.setRole(STR."ROLE_\{admin.getRole().toUpperCase()}");
+        admin.setRole("ROLE_"+admin.getRole().toUpperCase());
         return adminRepo.save(admin);
     }
 
@@ -48,7 +46,7 @@ public class AdminServiceImp implements AdminService{
         }
 
         adminRepo.delete(admin.get());
-        return STR."Admin with id \{adminId} deleted successfully";
+        return "Admin with id "+adminId+" deleted successfully";
     }
 
     @Override
@@ -59,7 +57,7 @@ public class AdminServiceImp implements AdminService{
         }
         Admin validAdmin = admin.get();
         validAdmin.setName(adminDto.getName());
-        validAdmin.setRole(STR."ROLE_\{adminDto.getRole()}");
+        validAdmin.setRole("ROLE_"+adminDto.getRole());
         return adminRepo.save(validAdmin);
     }
 }

@@ -4,6 +4,7 @@ import com.restaurant.restaurant.entity.Restaurant;
 import com.restaurant.restaurant.exception.restaurantex.EmptyRestaurantList;
 import com.restaurant.restaurant.exception.restaurantex.RestaurantNotFound;
 import com.restaurant.restaurant.repository.RestaurantRepo;
+import com.restaurant.restaurant.utility.RestaurantDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,6 @@ public class RestaurantServiceImp implements  RestaurantService{
         if(restaurant.isEmpty())
             throw new RestaurantNotFound();
         restaurantRepo.deleteById(restaurantId);
-        return STR."Restaurant with id \{restaurant} deleted successfully";
+        return "Restaurant with id "+restaurant+" deleted successfully";
     }
 }
