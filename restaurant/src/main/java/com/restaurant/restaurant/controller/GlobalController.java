@@ -20,7 +20,10 @@ public class GlobalController {
             return "Login successfully with email "+authentication.getName();
         return "Authentication failed";
     }
-
+ @GetMapping("/")
+ public  String HomePoint(){
+        return "Login successfully with oAuth2";
+ }
     @GetMapping("/head")
     public  ResponseEntity<String> readHead(@RequestHeader(value = "name") String name){
          return new ResponseEntity<>("My name is "+name,HttpStatus.OK);
