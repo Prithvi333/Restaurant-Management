@@ -5,6 +5,7 @@ import com.restaurant.restaurant.exception.userex.EmptyUserList;
 import com.restaurant.restaurant.exception.userex.UserNotFound;
 import com.restaurant.restaurant.repository.UserRepo;
 import com.restaurant.restaurant.utility.UserDto;
+import com.restaurant.restaurant.utility.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class UserServiceImp implements  UserService{
     @Override
     public User createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("ROLE_CUSTOMER");
+        user.setRole("ROLE_"+ Users.CUSTOMER);
 
        return userRepo.save(user);
     }

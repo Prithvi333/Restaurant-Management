@@ -1,4 +1,4 @@
-package com.restaurant.restaurant.security;
+package com.restaurant.restaurant.utility;
 
 public interface TokenInfoHolder {
 

@@ -21,9 +21,4 @@ public class GlobalController {
         return "Authentication failed";
     }
 
-    @GetMapping("/head")
-    public  ResponseEntity<String> readHead(@RequestHeader(value = "name") String name){
-         return new ResponseEntity<>("My name is "+name,HttpStatus.OK);
-    }
-
 }

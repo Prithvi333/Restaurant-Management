@@ -5,6 +5,7 @@ import com.restaurant.restaurant.exception.adminex.AdminNotFound;
 import com.restaurant.restaurant.exception.adminex.EmptyAdminList;
 import com.restaurant.restaurant.repository.AdminRepo;
 import com.restaurant.restaurant.utility.AdminDto;
+import com.restaurant.restaurant.utility.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class AdminServiceImp implements AdminService{
     @Override
     public Admin createAdmin(Admin admin) {
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-        admin.setRole("ROLE_"+admin.getRole().toUpperCase());
+        admin.setRole("ROLE_"+ Users.ADMIN);
         return adminRepo.save(admin);
     }
 
